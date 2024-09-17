@@ -1,19 +1,23 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum EnemySimpleFSMStates
 {
     Patrol,
     Chase,
-    Attack
+    Attack,
+    FleeToHQ
 }
 
 public class SimpleFSM : MonoBehaviour
 {
     [SerializeField] private EnemySimpleFSMStates _currentState;
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _patrolArea;
+    [SerializeField] private List<Transform> _patrollingLocations = new List<Transform>();
+    [SerializeField] private GameObject _HQ;
     
     [Header("Guard Stats")]
     [SerializeField, Range(8f, 15f)] 
@@ -26,14 +30,19 @@ public class SimpleFSM : MonoBehaviour
     private float _distanceToAttack = 3f;
 
     [SerializeField] private bool _isInFront;
-    
-    void Start()
+    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private int _index = 0;
+
+    private void Start()
     {
+        _index = 0;
+        _agent = GetComponent<NavMeshAgent>();
         _currentState = EnemySimpleFSMStates.Patrol;
         _player = GameObject.FindWithTag("Player");
+        _patrollingLocations = _patrolArea.GetComponentsInChildren<Transform>().ToList();
     }
 
-    void Update()
+    private void Update()
     {
         FiniteStateMachineRunner();
     }
@@ -56,22 +65,48 @@ public class SimpleFSM : MonoBehaviour
         }
     }
 
+    private void TransitionToState(EnemySimpleFSMStates state)
+    {
+        _currentState = state;
+    }
     private void Patrol()
     {
-        Debug.Log("Patrolling...");
         Vector3 playerPosInRelationToGuard = _player.transform.position - transform.position;
         float distanceToPlayer = playerPosInRelationToGuard.magnitude;
         Vector3 directionToPlayer = playerPosInRelationToGuard / distanceToPlayer;
-
+        
+        Vector3 destination = _patrollingLocations[_index].position; 
+        _agent.SetDestination(destination);
+        
+        if (Vector3.Distance(transform.position, destination) < 2.0f)
+        {
+            _index = (_index + 1) % _patrollingLocations.Count;
+        }
+        
         _isInFront = Vector3.Dot(transform.forward, directionToPlayer) > _fieldOfView;
         if (_isInFront && distanceToPlayer < _distanceToChase)
         {
-            _currentState = EnemySimpleFSMStates.Chase;
+            TransitionToState(EnemySimpleFSMStates.Chase);
+        }
+        if (_isInFront && distanceToPlayer < _distanceToAttack)
+        {
+            TransitionToState(EnemySimpleFSMStates.Attack);
         }
     }
     private void Chase()
     {
-        Debug.Log("CHAAAASEEEE....");
+        _agent.SetDestination(_player.transform.position);
+        if (Vector3.Distance(transform.position, _player.transform.position) > _distanceToChase)
+        {
+            TransitionToState(EnemySimpleFSMStates.Patrol);
+        }
+        if (Vector3.Distance(transform.position, _player.transform.position) < _distanceToAttack)
+        {
+            TransitionToState(EnemySimpleFSMStates.Attack);
+        }
     }
-    private void Attack() { }
+    private void Attack()
+    {
+        Debug.Log("You are lucky, I have no arms...");
+    }
 }
