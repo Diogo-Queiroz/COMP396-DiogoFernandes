@@ -375,6 +375,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jammo_LowPoly (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1300028563}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1419665227}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1837184622}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1815547176}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 1814997673}
     - target: {fileID: 7662823138643884713, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
       propertyPath: _HQ
       value: 
@@ -1363,6 +1387,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jammo_LowPoly (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 443841111}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1845332289}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 4201255}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1720846287}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 230643769}
     - target: {fileID: 7662823138643884713, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
       propertyPath: _HQ
       value: 
@@ -1629,14 +1677,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jammo_LowPoly
       objectReference: {fileID: 0}
-    - target: {fileID: 7662823138643884713, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
-      propertyPath: _HQ
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 241871905}
-    - target: {fileID: 7662823138643884713, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
-      propertyPath: _patrolArea
+      objectReference: {fileID: 1419665227}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 1614918204}
+      objectReference: {fileID: 1815547176}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1845332289}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 4201255}
+    - target: {fileID: 6757139785740679577, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
+      propertyPath: _patrolPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 230643769}
     - target: {fileID: 8938680079386066817, guid: efebbfcbe66ed5e439cdbe4fc59944d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
