@@ -13,7 +13,6 @@ public class ChaseState : BaseState
 
     public override void OnEnter()
     {
-        Debug.Log("Time to DIE");
         agent.speed = 4f;
         animator.Play(Run);
     }
@@ -24,7 +23,5 @@ public class ChaseState : BaseState
     }
 
     public override void OnExit()
-    {
-        Debug.Log("Leaving chase, something else has priority");
-    }
+    { }
 }

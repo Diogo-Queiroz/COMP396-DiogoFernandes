@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject[] _patrolPoints;
+    [SerializeField] private EnemyEyes _enemyEyes;
 
     private StateMachine _stateMachine;
 
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
         _player = GameObject.FindWithTag("Player");
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
+        _enemyEyes = GetComponent<EnemyEyes>();
     }
 
     private void Start()
@@ -28,7 +30,7 @@ public class Enemy : MonoBehaviour
         var chaseState = new ChaseState(_agent, _player, _animator);
         
         _stateMachine.AddTransition(patrolState, chaseState, new FuncPredicate(() => 
-            Vector3.Distance(_player.transform.position, transform.position) < 5f));
+            _enemyEyes.TrackableIsInSight));
         _stateMachine.AddTransition(chaseState, patrolState, new FuncPredicate(() =>
             Vector3.Distance(_player.transform.position, transform.position) > 15f));
         
