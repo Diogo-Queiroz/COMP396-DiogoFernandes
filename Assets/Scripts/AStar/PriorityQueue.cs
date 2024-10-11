@@ -9,7 +9,7 @@ public class PriorityQueue
 
 	public Node GetFirst()
 	{
-		if (_nodes.Count == 0)
+		if (_nodes.Count > 0)
 		{
 			return (Node)_nodes[0];
 		}

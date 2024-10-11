@@ -27,7 +27,7 @@ public class GridManager : MonoBehaviour
 	private Vector3 _origin = new Vector3(0,0,0);
 	public Vector3 Origin { get { return _origin; } }
 
-	private GameObject[] _obstacles = new GameObject[1];
+	[SerializeField] private GameObject[] _obstacles;
 	public Node[,] Nodes { get; set; }
 
 	private void Awake()
@@ -62,8 +62,8 @@ public class GridManager : MonoBehaviour
 	public Vector3 GetGridCellCenter(int index)
 	{
 		Vector3 cellPosition = GetGridCellPosition(index);
-		cellPosition.x = (GridCellSize / 2.0f);
-		cellPosition.z = (GridCellSize / 2.0f);
+		cellPosition.x += (GridCellSize / 2.0f);
+		cellPosition.z += (GridCellSize / 2.0f);
 		return cellPosition;
 	}
 
@@ -80,13 +80,13 @@ public class GridManager : MonoBehaviour
 	{
 		Nodes = new Node[NumOfColumns, NumOfRows];
 		int index = 0;
-		for (int i = 0; i < NumOfColumns; i++)
+		for (int row = 0; row < NumOfRows; row++)
 		{
-			for (int j = 0; j < NumOfRows; j++)
+			for (int col = 0; col < NumOfColumns; col++)
 			{
 				Vector3 cellPosition = GetGridCellCenter(index);
 				Node node = new Node(cellPosition);
-				Nodes[i, j] = node;
+				Nodes[col, row] = node;
 				index++;
 			}
 		}
@@ -97,7 +97,7 @@ public class GridManager : MonoBehaviour
 				int indexCell = GetGridIndex(obstacle.transform.position);
 				int col = GetColumn(indexCell);
 				int row = GetRow(indexCell);
-				Nodes[row, col].MarkAsObstacle(); 
+				Nodes[col, row].MarkAsObstacle(); 
 				// TODO check if problems happens with osbtacles here.
 			}
 		}
@@ -138,7 +138,7 @@ public class GridManager : MonoBehaviour
 		if (row != -1 && col != -1 &&
 			row < NumOfRows && col < NumOfColumns)
 		{
-			Node nodeToAdd = Nodes[row, col];
+			Node nodeToAdd = Nodes[col, row];
 			// If node is not an Obstacle, then add into the neighbours
 			if (!nodeToAdd.Obstacle)
 			{
@@ -174,17 +174,17 @@ public class GridManager : MonoBehaviour
 		float width = numCols * cellSize;
 		float height = numRows * cellSize;
 
-		for (int i = 0; i < numRows + 1; i++)
+		for (int row = 0; row <= numRows; row++)
 		{
-			Vector3 startPos = origin + i * cellSize * new Vector3(0.0f, 0.0f, 1.0f);
+			Vector3 startPos = origin + row * cellSize * new Vector3(0.0f, 0.0f, 1.0f);
 			Vector3 endPos = startPos + width * new Vector3(1.0f, 0.0f, 0.0f);
-			Debug.DrawLine(startPos, endPos, color);
+			Debug.DrawLine(startPos, endPos, Color.cyan);
 		}
-		for (int i = 0; i < numCols + 1; i++)
+		for (int col = 0; col <= numCols; col++)
 		{
-			Vector3 startPos = origin + i * cellSize * new Vector3(1.0f, 0.0f, 0.0f);
+			Vector3 startPos = origin + col * cellSize * new Vector3(1.0f, 0.0f, 0.0f);
 			Vector3 endPos = startPos + height * new Vector3(0.0f, 0.0f, 1.0f);
-			Debug.DrawLine(startPos, endPos, color);
+			Debug.DrawLine(startPos, endPos, Color.green);
 		}
 	}
 }
