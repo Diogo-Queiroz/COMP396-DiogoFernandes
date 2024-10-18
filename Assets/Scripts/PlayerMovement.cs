@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : ValidatedMonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float _walkSpeed;
@@ -20,17 +20,22 @@ public class PlayerMovement : ValidatedMonoBehaviour
     private float _verticalRotation;
     private Camera _mainCamera;
     private Vector3 _currentMovement = Vector3.zero;
-    private CharacterController _characterController;
+    [SerializeField, Self] private CharacterController _characterController;
 
     private PlayerInputs _playerInputs;
     [Header("New Input Actions")]
     [SerializeField] private Vector2 _moveInput, _lookInput;
     [SerializeField] private bool _isJumpPressed, _isSprintPressed;
 
+    // This can be replaced by ValidatedMonobehaviour inheritance
+    private void OnValidate()
+    {
+        this.ValidateRefs();
+    }
+
     private void Awake()
     {
         _playerInputs = new PlayerInputs();
-        _characterController = GetComponent<CharacterController>();
         _mainCamera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
 

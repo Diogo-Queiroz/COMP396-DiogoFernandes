@@ -18,9 +18,9 @@ public class AStar
 	/// </summary>
 	/// <param name="node"></param>
 	/// <returns></returns>
-	private static ArrayList CalculatePath(Node node)
+	private static List<Node> CalculatePath(Node node)
 	{
-		ArrayList list = new ArrayList();
+		List<Node> list = new();
 		while (node != null)
 		{
 			list.Add(node);
@@ -30,7 +30,7 @@ public class AStar
 		return list;
 	}
 
-	public static ArrayList FindPath(Node startNode, Node endNode)
+	public static List<Node> FindPath(Node startNode, Node endNode)
 	{
 		openList = new PriorityQueue();
 		openList.Add(startNode);
@@ -47,13 +47,13 @@ public class AStar
 				return CalculatePath(node);
 			}
 
-			ArrayList neighbours = new ArrayList();
+			List<Node> neighbours = new();
 			// TODO GetNeighbours from GridManager
 			GridManager.Instance.GetNeighbours(node, neighbours);
 
 			for (int index = 0; index < neighbours.Count; index++)
 			{
-				Node neighbourNode = (Node)neighbours[index];
+				Node neighbourNode = neighbours[index];
 				if (!closedList.Contains(neighbourNode))
 				{
 					float cost = HeuristicEstimateCost(node, neighbourNode);

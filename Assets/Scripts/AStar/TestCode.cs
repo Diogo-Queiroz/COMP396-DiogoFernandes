@@ -8,7 +8,7 @@ public class TestCode : MonoBehaviour
 	private Node startNode { get; set; }
 	private Node endNode { get; set; }
 
-	private ArrayList pathArray;
+	private List<Node> pathArray = new();
 
 	[SerializeField] private GameObject objectStart, objectEnd;
 	[SerializeField] private float elapsedTime = 0f, intervalTime = 1f;
@@ -19,7 +19,6 @@ public class TestCode : MonoBehaviour
         objectStart = GameObject.FindGameObjectWithTag("Start");
 		objectEnd = GameObject.FindGameObjectWithTag("End");
 
-		pathArray = new ArrayList();
 		FindPath();
     }
 
@@ -30,8 +29,17 @@ public class TestCode : MonoBehaviour
 		{
 			elapsedTime = 0f;
 			FindPath();
+			if (pathArray.Count > 0)
+			{
+				Move(pathArray[1].position);
+			}
 		}
     }
+
+	private void Move(Vector3 position)
+	{
+		objectStart.transform.position = position;
+	}
 
 	private void FindPath()
 	{
@@ -57,7 +65,7 @@ public class TestCode : MonoBehaviour
 			{
 				if (index < pathArray.Count)
 				{
-					Node nextNode = (Node)pathArray[index++];
+					Node nextNode = pathArray[index++];
 					Debug.DrawLine(node.position, nextNode.position, Color.magenta);
 				}
 			}

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [System.Serializable]
-public class Node : IComparable
+public class Node : IComparable<Node>
 {
 	public float nodeTotalCost, estimateCost;
 	public bool Obstacle;
@@ -23,9 +23,8 @@ public class Node : IComparable
 		Obstacle = true;
 	}
 
-	public int CompareTo(object obj)
+	public int CompareTo(Node node)
 	{
-		Node node = (Node)obj;
 		if (estimateCost < node.estimateCost)
 		{
 			return -1; // this node is priority on cost effectiveness

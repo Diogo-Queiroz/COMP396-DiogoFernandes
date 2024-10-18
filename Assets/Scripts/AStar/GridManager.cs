@@ -103,7 +103,7 @@ public class GridManager : MonoBehaviour
 		}
 	}
 
-	public void GetNeighbours(Node node, ArrayList neighbours)
+	public void GetNeighbours(Node node, List<Node> neighbours)
 	{
 		Vector3 neighbourPosition = node.position;
 		int neighbourIndex = GetGridIndex(neighbourPosition);
@@ -132,7 +132,7 @@ public class GridManager : MonoBehaviour
 		AssignNeighbour(leftNodeRow, leftNodeColumn, neighbours);
 	}
 
-	private void AssignNeighbour(int row, int col, ArrayList neighbours) 
+	private void AssignNeighbour(int row, int col, List<Node> neighbours) 
 	{
 		// If row and col is between the correct values, then act
 		if (row != -1 && col != -1 &&
