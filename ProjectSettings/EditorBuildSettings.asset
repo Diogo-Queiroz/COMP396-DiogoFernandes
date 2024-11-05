@@ -9,3 +9,4 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiplayerTest.unity
     guid: 0f09f21c1b189ba48af8d4d68bc9e4a8
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
