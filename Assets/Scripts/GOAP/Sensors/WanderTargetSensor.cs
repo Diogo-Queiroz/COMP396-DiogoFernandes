@@ -27,6 +27,7 @@ namespace COMP396.Goap
 				Vector2 random = Random.insideUnitSphere * wanderStats.WanderingRadius;
 				Vector3 position = agent.transform.position + 
 					new Vector3(random.x, -0.82f, random.y);
+				
 				if (NavMesh.SamplePosition(position, out NavMeshHit hit, 1, NavMesh.AllAreas))
 				{
 					return hit.position;
