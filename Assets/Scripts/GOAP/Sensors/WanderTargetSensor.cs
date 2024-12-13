@@ -1,6 +1,7 @@
-using CrashKonijn.Goap.Classes;
-using CrashKonijn.Goap.Interfaces;
-using CrashKonijn.Goap.Sensors;
+using CrashKonijn.Goap.Runtime;
+using CrashKonijn.Goap.Core;
+using CrashKonijn.Agent.Runtime;
+using CrashKonijn.Agent.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,19 +14,20 @@ namespace COMP396.Goap
 		public override void Created() { }
 		public override void Update() { }
 
-		public override ITarget Sense(IMonoAgent agent, IComponentReference references)
+
+		public override ITarget Sense(IActionReceiver agent, IComponentReference references, ITarget target)
 		{
 			Vector3 position = GetRandomPosition(agent);
 
 			return new PositionTarget(position);
 		}
 
-		private Vector3 GetRandomPosition(IMonoAgent agent)
+		private Vector3 GetRandomPosition(IActionReceiver agent)
 		{
 			for (int i = 0; i < 5; i++)
 			{
 				Vector2 random = Random.insideUnitSphere * wanderStats.WanderingRadius;
-				Vector3 position = agent.transform.position + 
+				Vector3 position = agent.Transform.position + 
 					new Vector3(random.x, -0.82f, random.y);
 				
 				if (NavMesh.SamplePosition(position, out NavMeshHit hit, 1, NavMesh.AllAreas))
@@ -33,7 +35,7 @@ namespace COMP396.Goap
 					return hit.position;
 				}
 			}
-			return agent.transform.position;
+			return agent.Transform.position;
 		}
 
 		public void Inject(DependencyInjection injection)

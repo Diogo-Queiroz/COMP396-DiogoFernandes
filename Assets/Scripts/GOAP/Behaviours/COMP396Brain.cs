@@ -1,23 +1,26 @@
-using CrashKonijn.Goap.Behaviours;
+using CrashKonijn.Goap.Runtime;
+using CrashKonijn.Goap.Core;
+using CrashKonijn.Agent.Runtime;
+using CrashKonijn.Agent.Core;
 using KBCore.Refs;
 using UnityEngine;
 
 namespace COMP396.Goap
 {
-	[RequireComponent(typeof(AgentBehaviour))]
+	[RequireComponent(typeof(GoapActionProvider))]
 	public class COMP396Brain : ValidatedMonoBehaviour
 	{
-		[SerializeField, Self] private AgentBehaviour brain;
-		[SerializeField, Scene] private GoapRunnerBehaviour runner;
+		[SerializeField, Self] private GoapActionProvider brain;
+		[SerializeField, Scene] private GoapBehaviour runner;
 
 		private void Awake()
 		{
-			brain.GoapSet = runner.GetGoapSet("COMP396");
+			brain.AgentType = runner.GetAgentType("COMP396-Agent");
 		}
 
 		private void Start()
 		{
-			brain.SetGoal<WanderGoal>(false);
+			brain.RequestGoal<WanderGoal>(false);
 		}
 	}
 }

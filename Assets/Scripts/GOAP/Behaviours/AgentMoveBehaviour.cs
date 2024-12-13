@@ -1,6 +1,8 @@
 using System;
-using CrashKonijn.Goap.Behaviours;
-using CrashKonijn.Goap.Interfaces;
+using CrashKonijn.Goap.Runtime;
+using CrashKonijn.Goap.Core;
+using CrashKonijn.Agent.Runtime;
+using CrashKonijn.Agent.Core;
 using KBCore.Refs;
 using UnityEngine;
 using UnityEngine.AI;

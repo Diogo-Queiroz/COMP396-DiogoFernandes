@@ -1,12 +1,12 @@
 using UnityEngine;
-using CrashKonijn.Goap.Behaviours;
-using CrashKonijn.Goap.Classes;
-using CrashKonijn.Goap.Enums;
-using CrashKonijn.Goap.Interfaces;
+using CrashKonijn.Goap.Runtime;
+using CrashKonijn.Goap.Core;
+using CrashKonijn.Agent.Runtime;
+using CrashKonijn.Agent.Core;
 
 namespace COMP396.Goap
 {
-	public class WanderAction : ActionBase<WanderAction.Data>, IInjectable
+	public class WanderAction : GoapActionBase<WanderAction.Data>, IInjectable
 	{
 		public WanderStatsSO wanderStats;
 		public class Data : IActionData
@@ -20,7 +20,7 @@ namespace COMP396.Goap
 		{
 			data.Timer = Random.Range(wanderStats.MinTimeBetweenWandering, wanderStats.MaxTimeBetweenWandering);
 		}
-		public override ActionRunState Perform(IMonoAgent agent, Data data, ActionContext context)
+		public override IActionRunState Perform(IMonoAgent agent, Data data, IActionContext context)
 		{
 			data.Timer -= context.DeltaTime;
 			if (data.Timer > 0)

@@ -333,27 +333,16 @@ PrefabInstance:
       addedObject: {fileID: 63746003}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f35e7f8631099649b7aa9fd591622c2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 63746002}
+      addedObject: {fileID: 63746009}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f35e7f8631099649b7aa9fd591622c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 63746008}
   m_SourcePrefab: {fileID: 100100000, guid: 7f35e7f8631099649b7aa9fd591622c2, type: 3}
 --- !u!1 &63746001 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f35e7f8631099649b7aa9fd591622c2, type: 3}
   m_PrefabInstance: {fileID: 63746000}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &63746002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63746001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fbea89b125bec848bb175004df2f146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brain: {fileID: 63746005}
-  runner: {fileID: 1080064446}
 --- !u!114 &63746003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,13 +393,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cef53d855ccf0b46bcf004b27c4a52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goapSetBehaviour: {fileID: 0}
-  <DistanceMultiplier>k__BackingField: 1
+  <ActionProviderBase>k__BackingField: {fileID: 63746009}
+  <LoggerConfig>k__BackingField:
+    <DebugMode>k__BackingField: 1
+    <MaxLogSize>k__BackingField: 20
 --- !u!95 &63746006 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7f35e7f8631099649b7aa9fd591622c2, type: 3}
   m_PrefabInstance: {fileID: 63746000}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &63746008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63746001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbea89b125bec848bb175004df2f146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 63746009}
+  runner: {fileID: 1080064446}
+--- !u!114 &63746009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63746001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72344165e2cc41da93476bb1aa2cdd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <LoggerConfig>k__BackingField:
+    <DebugMode>k__BackingField: 1
+    <MaxLogSize>k__BackingField: 20
+  <AgentTypeBehaviour>k__BackingField: {fileID: 0}
+  <DistanceMultiplier>k__BackingField: 1
 --- !u!1 &141375561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,9 +1166,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080064449}
-  - component: {fileID: 1080064447}
   - component: {fileID: 1080064446}
   - component: {fileID: 1080064448}
+  - component: {fileID: 1080064450}
   m_Layer: 0
   m_Name: GOAP
   m_TagString: Untagged
@@ -1167,21 +1189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configInitializer: {fileID: 1080064448}
-  setConfigFactories: []
-  goapSetConfigFactories:
-  - {fileID: 1080064447}
---- !u!114 &1080064447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080064445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97d623051b30ec0439a7a565a33e7360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  agentTypeConfigFactories:
+  - {fileID: 1197452769}
 --- !u!114 &1080064448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,8 +1216,65 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1197452770}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1080064450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080064445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed2f3e5164f4b4383d4f2ed55b4dd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1197452768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197452770}
+  - component: {fileID: 1197452769}
+  m_Layer: 0
+  m_Name: WanderFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1197452769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197452768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301a0759830952045b628f78cfb868ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1197452770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197452768}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1080064449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1300028563
 GameObject:
